@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 
 public class Question1Fragment extends Fragment  {
     int rix=0;
-    Boolean inQuiz=false;
+    private Game game=new Game();
     private OnSetRightAnswerListener mListener;
 
 
@@ -22,8 +22,9 @@ public class Question1Fragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        game=(Game)getArguments().getParcelable("game");
         try {
-            mListener = (OnSetRightAnswerListener) context;
+            mListener = (OnSetRightAnswerListener) game;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnSetRightAnswerListener");
@@ -34,7 +35,7 @@ public class Question1Fragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        inQuiz=getArguments().getBoolean("inQuiz");
+
 
         return inflater.inflate(R.layout.fragment_question1, container, false);
     }
