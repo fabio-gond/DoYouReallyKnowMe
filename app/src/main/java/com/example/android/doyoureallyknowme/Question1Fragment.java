@@ -8,10 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 
-
 public class Question1Fragment extends Fragment  {
     int rix=0;
-    private Game game=new Game();
+    private Game game;
     private OnSetRightAnswerListener mListener;
 
 
@@ -22,7 +21,9 @@ public class Question1Fragment extends Fragment  {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        // Get the game object from the activity
         game=(Game)getArguments().getParcelable("game");
+        // Connect the listener to the game
         try {
             mListener = (OnSetRightAnswerListener) game;
         } catch (ClassCastException e) {
@@ -35,21 +36,21 @@ public class Question1Fragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_question1, container, false);
     }
 
     public void onActivityCreated (Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
+        // Find the fragment RadioButtons
         RadioButton radioButton=(RadioButton) getActivity().findViewById(R.id.radio1);
         radioButton.setOnClickListener(mRadioListener);
     }
 
-    // Create an anonymous implementation of OnClickListener
+    // Called on a click on a radiobutton
     private View.OnClickListener mRadioListener = new View.OnClickListener() {
         public void onClick(View v) {
             Answer rightAnswer=new Answer(0);
+            // What's the clicked radio button?
             switch (v.getId() ) {
                 case R.id.radio1:
                     rightAnswer=new Answer(1);
@@ -66,7 +67,7 @@ public class Question1Fragment extends Fragment  {
                 default:
                     break;
             }
-            mListener.setAnswer(1,rightAnswer);
+            mListener.setAnswer(1,rightAnswer); // Set the right answer to this quiz
         }
     };
 
@@ -77,6 +78,7 @@ public class Question1Fragment extends Fragment  {
         mListener = null;
     }
 
+    // Interface for a listener of a choose answer
     public interface OnSetRightAnswerListener {
         public void setAnswer(int questionId,Answer rightAnswer);
     }

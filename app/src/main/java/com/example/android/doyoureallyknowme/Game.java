@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcelable {
-    private Boolean inQuiz= false;
+    private Boolean isPlaying = false; // Detect if the user is playing or setting the answers
     private int score=0;
     private Question question1= new Question();
     private int currentQuestion=0;
@@ -13,13 +13,17 @@ public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcela
 
     public int getScore(){return score;}
     public void  setScore(int score){this.score=score;}
-    public Boolean getInQuiz(){return inQuiz;}
-    public void setInQuiz(Boolean inQuiz){this.inQuiz=inQuiz;}
+    public Boolean getIsPlaying(){return isPlaying;}
+    public void setIsPlaying(Boolean isPlaying){this.isPlaying = isPlaying;}
     public int getCurrentQuestion() {return currentQuestion;   }
     public void setCurrentQuestion(int currentQuestion) { this.currentQuestion = currentQuestion;   }
 
+    /*
+        Set the right answer to the current question
+     */
     public void setAnswer(int questionId,Answer rightAnswer){
         question1.setRightAnswer(rightAnswer.getStringAnswer());
+        currentQuestion=1;
         mGameListener.goToNextQuestion();
     }
 
@@ -28,13 +32,14 @@ public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcela
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(inQuiz);
+        dest.writeValue(isPlaying);
     }
     public Game(Parcel parcel) {
-        this.inQuiz = (Boolean) parcel.readValue(null);
+        this.isPlaying = (Boolean) parcel.readValue(null);
     }
     public Game(){    }
     public Game(Activity activity){
+        // Connect the Game Listener to the parent activity
         try {
             mGameListener = (OnSetRightAnswerListener) activity;
         } catch (ClassCastException e) {
@@ -42,6 +47,8 @@ public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcela
                     + " must implement OnSetRightAnswerListener");
         }
     }
+
+    // Mandatory!
     public int describeContents() {
         return 0;
     }
