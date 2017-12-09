@@ -34,7 +34,4 @@ public class Answer {
     public String getStringAnswer() {
         return stringAnswer;
     }
-    public int[] getIntArrayAnswer() {
-        return intArrayAnswer;
-    }
 }

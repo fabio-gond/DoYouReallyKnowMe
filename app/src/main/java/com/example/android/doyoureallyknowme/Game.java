@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcelable {
+public class Game implements Parcelable {
     private Boolean isPlaying = false; // Detect if the user is playing or setting the answers
     private int score=0;
-    private Question question1= new Question();
+    private Question[] questions;
     private int currentQuestion=0;
     private OnSetRightAnswerListener mGameListener;
 
@@ -22,9 +22,13 @@ public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcela
         Set the right answer to the current question
      */
     public void setAnswer(int questionId,Answer rightAnswer){
-        question1.setRightAnswer(rightAnswer.getStringAnswer());
+        questions[0].setRightAnswer(rightAnswer);
         currentQuestion=1;
         mGameListener.goToNextQuestion();
+    }
+
+    public Answer getAnswer(int questionId){
+        return  questions[0].getRightAnswer();
     }
 
     public interface OnSetRightAnswerListener {
@@ -35,10 +39,12 @@ public class Game implements Question1Fragment.OnSetRightAnswerListener, Parcela
         dest.writeValue(isPlaying);
     }
     public Game(Parcel parcel) {
+        questions=new Question[10];
         this.isPlaying = (Boolean) parcel.readValue(null);
     }
-    public Game(){    }
+    public Game(){  questions=new Question[10];  }
     public Game(Activity activity){
+        questions=new Question[10];
         // Connect the Game Listener to the parent activity
         try {
             mGameListener = (OnSetRightAnswerListener) activity;
