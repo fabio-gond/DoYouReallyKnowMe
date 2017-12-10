@@ -1,9 +1,7 @@
 package com.example.android.doyoureallyknowme;
 
-import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 public class QuizActivity extends AppCompatActivity implements Game.OnSetRightAnswerListener  {
     private Game game;

@@ -46,7 +46,7 @@ public class Game implements Parcelable {
     }
 
     public interface OnSetRightAnswerListener {
-        public void goToNextQuestion();
+        void goToNextQuestion();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
@@ -54,7 +54,7 @@ public class Game implements Parcelable {
     }
     public Game(Parcel parcel) {
         questions=new Question[10];
-        this.isPlaying = (Boolean) parcel.readValue(null);
+        //this.isPlaying = (Boolean) parcel.readValue(null);
     }
     public Game(){  questions=new Question[10];  }
     public Game(Activity activity){

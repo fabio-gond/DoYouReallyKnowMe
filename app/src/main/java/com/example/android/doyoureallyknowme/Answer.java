@@ -9,16 +9,16 @@ public class Answer {
     private int[] intArrayAnswer;
 
     // Constructors based on the answer type
-    public Answer(String stringAnswer){
+    Answer(String stringAnswer){
         this.stringAnswer=stringAnswer;
     }
-    public Answer(Boolean booleanAnswer){
+    Answer(Boolean booleanAnswer){
         this.booleanAnswer=booleanAnswer;
     }
-    public Answer(int intAnswer){
+    Answer(int intAnswer){
         this.intAnswer=intAnswer;
     }
-    public Answer(int[] intArrayAnswer){
+    Answer(int[] intArrayAnswer){
         this.intArrayAnswer=intArrayAnswer;
     }
 

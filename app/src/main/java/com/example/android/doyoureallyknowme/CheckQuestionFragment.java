@@ -23,20 +23,20 @@ public class CheckQuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Get the game object from the activity
-        game=(Game)getArguments().getParcelable("game");
+        game=getArguments().getParcelable("game");
         answersTexts =getArguments().getStringArray("answersTexts");
         // Inflate the layout for this fragment
         fragmentView= inflater.inflate(R.layout.fragment_check_question, container, false);
         createCheckBoxes(); // create check boxes with answers
         // Receive the question and the subtitle and set the corresponding TextViews answersTexts
-        TextView question = (TextView) fragmentView.findViewById(R.id.tv_checkquestion_question);
+        TextView question = fragmentView.findViewById(R.id.tv_checkquestion_question);
         question.setText(getArguments().getString("question"));
         if (getArguments().getString("subtitle")!=null){
-            TextView subtitle = (TextView) fragmentView.findViewById(R.id.tv_checkquestion_subtitle);
+            TextView subtitle =  fragmentView.findViewById(R.id.tv_checkquestion_subtitle);
             subtitle.setText(getArguments().getString("subtitle"));
         }
         // Set the current question number to the bottom bar
-        TextView bottomText = (TextView) getActivity().findViewById(R.id.textview_quiz_bottomText);
+        TextView bottomText =  getActivity().findViewById(R.id.textview_quiz_bottomText);
         bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),10));
         // Set Click listener on the next button
         final Button button = fragmentView.findViewById(R.id.btn_checkquestion_next);
@@ -69,7 +69,7 @@ public class CheckQuestionFragment extends Fragment {
     private void createCheckBoxes(){
         int i=0;
         for (String text:answersTexts){
-            LinearLayout linearLayout=(LinearLayout) fragmentView.findViewById(R.id.layout_checkquestion_answers) ;
+            LinearLayout linearLayout=fragmentView.findViewById(R.id.layout_checkquestion_answers) ;
             CheckBox checkBox= new CheckBox(getActivity(),null,R.attr.checkboxStyle);
             checkBox.setId(i);
             checkBox.setTag(i);

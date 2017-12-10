@@ -1,6 +1,5 @@
 package com.example.android.doyoureallyknowme;
 
-
 public class Question {
     private Boolean rightAnswered=false;
     private Answer rightAnswer;

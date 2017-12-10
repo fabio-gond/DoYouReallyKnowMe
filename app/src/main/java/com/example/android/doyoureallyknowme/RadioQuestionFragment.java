@@ -22,27 +22,27 @@ public class RadioQuestionFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Get the game object from the activity
-        game=(Game)getArguments().getParcelable("game");
+        game=getArguments().getParcelable("game");
         answersTexts =getArguments().getStringArray("answersTexts");
         // Inflate the layout for this fragment
         fragmentView = inflater.inflate(R.layout.fragment_radio_question, container, false);
 
         populateRadioGroup(); // create radio buttons with answers
         // Receive the question and the subtitle and set the corresponding TextViews answersTexts
-        TextView question = (TextView) fragmentView.findViewById(R.id.tv_radioquestion_question);
+        TextView question =  fragmentView.findViewById(R.id.tv_radioquestion_question);
         question.setText(getArguments().getString("question"));
         if (getArguments().getString("subtitle")!=null){
-            TextView subtitle = (TextView) fragmentView.findViewById(R.id.tv_radioquestion_subtitle);
+            TextView subtitle = fragmentView.findViewById(R.id.tv_radioquestion_subtitle);
             subtitle.setText(getArguments().getString("subtitle"));
         }
         // Set the current question number to the bottom bar
-        TextView bottomText = (TextView) getActivity().findViewById(R.id.textview_quiz_bottomText);
+        TextView bottomText = getActivity().findViewById(R.id.textview_quiz_bottomText);
         bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),10));
 
         return fragmentView;
     }
 
-    // Called on a click on a radiobutton
+    // Called on a click on a RadioButton
     private View.OnClickListener mRadioListener = new View.OnClickListener() {
         public void onClick(View v) {
             // What's the clicked radio button?
@@ -59,7 +59,7 @@ public class RadioQuestionFragment extends Fragment  {
     private void populateRadioGroup(){
         int i=0;
         for (String text:answersTexts){
-            RadioGroup radioGroup=(RadioGroup) fragmentView.findViewById(R.id.rg_radioquestion_answers);
+            RadioGroup radioGroup=fragmentView.findViewById(R.id.rg_radioquestion_answers);
             RadioButton radioButton=new RadioButton(getActivity(),null,R.attr.radioButtonStyle);
             radioButton.setOnClickListener(mRadioListener);
             radioButton.setTag(i);
