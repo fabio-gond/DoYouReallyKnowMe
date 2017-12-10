@@ -7,7 +7,7 @@
     tools:context="com.example.android.doyoureallyknowme.QuizActivity"
     >
 
-    <FrameLayout android:id="@+id/quiz_container"
+    <FrameLayout android:id="@+id/layout_quiz_quizcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/paddingMain">
@@ -19,7 +19,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
         <TextView
-            android:id="@+id/bottomText"
+            android:id="@+id/textview_quiz_bottomText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="1 di 10"

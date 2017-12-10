@@ -6,26 +6,32 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_radioquestion_question"
+        android:id="@+id/tv_checkquestion_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Di che colore sono i miei occhi?" />
 
     <TextView
-        android:id="@+id/tv_radioquestion_subtitle"
+        android:id="@+id/tv_checkquestion_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         />
 
-    <RadioGroup
-        android:id="@+id/rg_radioquestion_answers"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/layout_checkquestion_answers"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+    </LinearLayout>
 
-    </RadioGroup>
+    <Button
+        android:id="@+id/btn_checkquestion_next"
+        android:text="@string/checkquestion_btnnext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

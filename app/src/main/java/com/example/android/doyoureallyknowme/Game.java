@@ -92,12 +92,14 @@ public class Game implements Parcelable {
         questions[1].setAnswers(answers);
         questions[1].setType("radio");
         questions[1].setQuestion("Di che colore sono i miei occhi?");
-        Answer[] answers1={new Answer("Gialli"),new Answer("Rossi")};
+
+
         questions[2]=new Question();
-        questions[2].setAnswers(answers1);
-        questions[2].setType("radio");
+        questions[2].setType("check");
         questions[2].setQuestion("Di che colore sono i miei capelli?");
         questions[2].setSubtitle("Una sola risposta possibile");
+        Answer[] answers1={new Answer("Gialli"),new Answer("Rossi")};
+        questions[2].setAnswers(answers1);
     }
 
 }

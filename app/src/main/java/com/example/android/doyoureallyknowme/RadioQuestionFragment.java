@@ -1,6 +1,5 @@
 package com.example.android.doyoureallyknowme;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,17 +10,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class RadioQuestionFragment extends Fragment  {
-    int rix=0;
     private Game game;
-    private String[] texts;
+    private String[] answersTexts; // answers of the current quiz - used on radio button creation
+    private View fragmentView;
 
     public RadioQuestionFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
     }
 
     @Override
@@ -29,48 +23,46 @@ public class RadioQuestionFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Get the game object from the activity
         game=(Game)getArguments().getParcelable("game");
-        texts=getArguments().getStringArray("texts");
+        answersTexts =getArguments().getStringArray("answersTexts");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_radio_question, container, false);
-    }
+        fragmentView = inflater.inflate(R.layout.fragment_radio_question, container, false);
 
-    public void onActivityCreated (Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
-        populateRadioGroup(texts);
-        TextView question = (TextView) getActivity().findViewById(R.id.question);
+        populateRadioGroup(); // create radio buttons with answers
+        // Receive the question and the subtitle and set the corresponding TextViews answersTexts
+        TextView question = (TextView) fragmentView.findViewById(R.id.tv_radioquestion_question);
         question.setText(getArguments().getString("question"));
         if (getArguments().getString("subtitle")!=null){
-            TextView subtitle = (TextView) getActivity().findViewById(R.id.subtitle);
+            TextView subtitle = (TextView) fragmentView.findViewById(R.id.tv_radioquestion_subtitle);
             subtitle.setText(getArguments().getString("subtitle"));
         }
-        TextView bottomText = (TextView) getActivity().findViewById(R.id.bottomText);
-        bottomText.setText(game.getCurrentQuestionNum() + " di 10");
+        // Set the current question number to the bottom bar
+        TextView bottomText = (TextView) getActivity().findViewById(R.id.textview_quiz_bottomText);
+        bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),10));
+
+        return fragmentView;
     }
 
     // Called on a click on a radiobutton
     private View.OnClickListener mRadioListener = new View.OnClickListener() {
         public void onClick(View v) {
-            Answer rightAnswer=new Answer(0);
             // What's the clicked radio button?
             RadioButton radioButton= (RadioButton) v;
-            rightAnswer=new Answer(radioButton.getText().toString());
+            Answer rightAnswer=new Answer((int)radioButton.getTag());
             game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answer to this quiz
         }
     };
 
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    public void populateRadioGroup(String[] texts){
+    /**
+    * Create the RadioButtons from the answers
+     */
+    private void populateRadioGroup(){
         int i=0;
-        for (String text:texts){
-            RadioGroup radioGroup=(RadioGroup) getActivity().findViewById(R.id.radiogroup);
+        for (String text:answersTexts){
+            RadioGroup radioGroup=(RadioGroup) fragmentView.findViewById(R.id.rg_radioquestion_answers);
             RadioButton radioButton=new RadioButton(getActivity(),null,R.attr.radioButtonStyle);
             radioButton.setOnClickListener(mRadioListener);
-            radioButton.setId(i);
+            radioButton.setTag(i);
             radioButton.setText(text);
             radioGroup.addView(radioButton);
             i++;
