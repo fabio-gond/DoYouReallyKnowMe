@@ -19,6 +19,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
         <TextView
+            android:id="@+id/bottomText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="1 di 10"

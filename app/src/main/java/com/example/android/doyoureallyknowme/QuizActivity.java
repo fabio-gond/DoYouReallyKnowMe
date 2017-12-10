@@ -1,9 +1,8 @@
 package com.example.android.doyoureallyknowme;
 
-import android.graphics.Point;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 public class QuizActivity extends AppCompatActivity implements Game.OnSetRightAnswerListener  {
     private Game game;
@@ -14,16 +13,43 @@ public class QuizActivity extends AppCompatActivity implements Game.OnSetRightAn
         setContentView(R.layout.activity_quiz);
 
         game=new Game(this);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("game", game);
-        Question1Fragment question1Fragment = new Question1Fragment();
-        // Send game parcelable to fragment
-        question1Fragment.setArguments(bundle);
-        //Open fragment 1
-        getSupportFragmentManager().beginTransaction().add(R.id.quiz_container, question1Fragment).commit();
+        goToNextQuestion();
     }
 
     public void goToNextQuestion(){
-        Log.i("QuizActivity","Go to the next question! " +game.getCurrentQuestion());
+        int currentQuestionNum= game.getCurrentQuestionNum();
+        currentQuestionNum++;
+        game.setCurrentQuestionNum(currentQuestionNum);
+        Question question= game.getQuestion(currentQuestionNum);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("game", game);
+        switch (question.getType()){
+            case "radio":
+                Answer[] answers = question.getAnswers();
+                String[] texts = new String[answers.length];
+                int i=0;
+                for(Answer answer:answers){
+                    texts[i]=answer.getStringAnswer();
+                    i++;
+                }
+                bundle.putString("question",question.getQuestion());
+                if (question.getSubtitle()!= null) bundle.putString("subtitle",question.getSubtitle());
+                bundle.putStringArray("texts",texts);
+
+                // Create new fragment and transaction
+                RadioQuestionFragment questionFragment = new RadioQuestionFragment();
+                // Send game parcelable to fragment
+                questionFragment.setArguments(bundle);
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                // Replace whatever is in the fragment_container view with this fragment
+                if (currentQuestionNum==1){
+                    transaction.add(R.id.quiz_container, questionFragment);
+                }else{
+                    transaction.replace(R.id.quiz_container, questionFragment);
+                }
+                // Commit the transaction
+                transaction.commit();
+                break;
+        }
     }
 }
