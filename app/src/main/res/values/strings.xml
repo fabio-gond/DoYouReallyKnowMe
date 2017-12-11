@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">DoYouReallyKnowMe</string>
     <string name="quiz_stepindicator">%1$d of %2$d</string>
-    <string name="checkquestion_btnnext">next</string>
+    <string name="all_btnnext">next</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

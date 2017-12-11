@@ -37,7 +37,7 @@ public class CheckQuestionFragment extends Fragment {
         }
         // Set the current question number to the bottom bar
         TextView bottomText =  getActivity().findViewById(R.id.textview_quiz_bottomText);
-        bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),10));
+        bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),game.getQuestionsQuantity()));
         // Set Click listener on the next button
         final Button button = fragmentView.findViewById(R.id.btn_checkquestion_next);
         button.setOnClickListener(new View.OnClickListener() {

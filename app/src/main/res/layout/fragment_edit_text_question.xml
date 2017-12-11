@@ -6,29 +6,26 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_checkquestion_question"
+        android:id="@+id/tv_editquestion_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Di che colore sono i miei occhi?" />
 
     <TextView
-        android:id="@+id/tv_checkquestion_subtitle"
+        android:id="@+id/tv_editquestion_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         />
 
-    <LinearLayout
-        android:id="@+id/layout_checkquestion_answers"
+    <EditText
+        android:id="@+id/et_editquestion_answer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btn_checkquestion_next"
+        android:id="@+id/btn_editquestion_next"
         android:text="@string/all_btnnext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

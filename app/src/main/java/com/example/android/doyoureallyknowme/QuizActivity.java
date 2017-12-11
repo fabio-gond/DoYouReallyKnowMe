@@ -76,6 +76,21 @@ public class QuizActivity extends AppCompatActivity implements Game.OnSetRightAn
                 // Commit the transaction
                 transaction.commit();}
                 break;
+            case "edit":{
+                // Create new fragment and transaction
+                EditTextQuestionFragment questionFragment = new EditTextQuestionFragment();
+                // Send game parcelable to fragment
+                questionFragment.setArguments(bundle);
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                // Replace whatever is in the fragment_container view with this fragment
+                if (currentQuestionNum==1){
+                    transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
+                }else{
+                    transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
+                }
+                // Commit the transaction
+                transaction.commit();}
+            break;
         }
     }
 }

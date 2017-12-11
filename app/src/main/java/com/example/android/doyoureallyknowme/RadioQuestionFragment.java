@@ -37,7 +37,7 @@ public class RadioQuestionFragment extends Fragment  {
         }
         // Set the current question number to the bottom bar
         TextView bottomText = getActivity().findViewById(R.id.textview_quiz_bottomText);
-        bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),10));
+        bottomText.setText( getString(R.string.quiz_stepindicator,game.getCurrentQuestionNum(),game.getQuestionsQuantity()));
 
         return fragmentView;
     }
