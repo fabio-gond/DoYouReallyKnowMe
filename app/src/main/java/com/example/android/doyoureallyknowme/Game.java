@@ -111,7 +111,14 @@ public class Game implements Parcelable {
      * @return quantity of questions
      */
     public int getQuestionsQuantity(){
-        return questions.length;
+        return 3;
+    }
+
+    /**
+     * Start the quiz game for the partner
+     */
+    public void startGame(){
+
     }
 
 }

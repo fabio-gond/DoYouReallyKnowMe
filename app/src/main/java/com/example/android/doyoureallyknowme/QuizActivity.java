@@ -1,18 +1,25 @@
 package com.example.android.doyoureallyknowme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class QuizActivity extends AppCompatActivity implements Game.OnSetRightAnswerListener  {
     private Game game;
+    private Boolean isPlaying = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        game=new Game(this);
-        goToNextQuestion();
+        Intent intent = getIntent();
+        isPlaying = intent.getBooleanExtra("isplaying",false);
+
+        if (!isPlaying){
+            game=new Game(this);
+            goToNextQuestion();
+        } else game.startGame();
     }
 
     /**
@@ -20,6 +27,16 @@ public class QuizActivity extends AppCompatActivity implements Game.OnSetRightAn
      */
     public void goToNextQuestion(){
         int currentQuestionNum= game.getCurrentQuestionNum();
+        if (currentQuestionNum>=game.getQuestionsQuantity()){
+            // Create new fragment and transaction
+            SettingEndFragment settingEndFragment = new SettingEndFragment();
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment
+            transaction.replace(R.id.layout_quiz_quizcontainer, settingEndFragment);
+            // Commit the transaction
+            transaction.commit();
+            return;
+        }
         currentQuestionNum++;
         game.setCurrentQuestionNum(currentQuestionNum);
         Question question= game.getQuestion(currentQuestionNum);
