@@ -42,6 +42,7 @@ public class EditTextQuestionFragment extends Fragment {
                 EditText editText = getActivity().findViewById(R.id.et_editquestion_answer);
                 Answer rightAnswer=new Answer(editText.getText().toString());
                 game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answers to this quiz
+                ((QuizActivity)getActivity()).goToNextQuestion();
             }
         });
         return fragmentView;

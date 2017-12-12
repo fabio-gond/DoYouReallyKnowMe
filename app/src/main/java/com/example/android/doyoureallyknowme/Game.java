@@ -12,8 +12,6 @@ public class Game implements Parcelable {
     private int score=0;
     private Question[] questions;
     private int currentQuestionNum =0;
-    private OnSetRightAnswerListener mGameListener;
-    private Timer timer = new Timer();
 
     public int getScore(){return score;}
     public void  setScore(int score){this.score=score;}
@@ -31,22 +29,10 @@ public class Game implements Parcelable {
          */
     public void setRightAnswer(int questionId, Answer rightAnswer){
         questions[questionId].setRightAnswer(rightAnswer);
-        timer.cancel(); //this will cancel the current task. if there is no active task, nothing happens
-        timer = new Timer();
-        TimerTask action = new TimerTask() {
-            public void run() {
-                mGameListener.goToNextQuestion();
-            }
-        };
-        timer.schedule(action, 300); //this starts the task
     }
 
     public Answer getAnswer(int questionId){
         return  questions[0].getRightAnswer();
-    }
-
-    public interface OnSetRightAnswerListener {
-        void goToNextQuestion();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
@@ -59,13 +45,6 @@ public class Game implements Parcelable {
     public Game(){  questions=new Question[10];  }
     public Game(Activity activity){
         createQuestions();
-        // Connect the Game Listener to the parent activity
-        try {
-            mGameListener = (OnSetRightAnswerListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnSetRightAnswerListener");
-        }
     }
 
     // Mandatory!
@@ -118,7 +97,8 @@ public class Game implements Parcelable {
      * Start the quiz game for the partner
      */
     public void startGame(){
-
+        isPlaying=true;
+        currentQuestionNum=0;
     }
 
 }

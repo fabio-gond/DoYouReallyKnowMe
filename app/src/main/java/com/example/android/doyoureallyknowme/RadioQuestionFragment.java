@@ -9,10 +9,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class RadioQuestionFragment extends Fragment  {
     private Game game;
     private String[] answersTexts; // answers of the current quiz - used on radio button creation
     private View fragmentView;
+    private Timer timer = new Timer();
 
     public RadioQuestionFragment() {
         // Required empty public constructor
@@ -49,6 +53,14 @@ public class RadioQuestionFragment extends Fragment  {
             RadioButton radioButton= (RadioButton) v;
             Answer rightAnswer=new Answer((int)radioButton.getTag());
             game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answer to this quiz
+            timer.cancel(); //this will cancel the current task. if there is no active task, nothing happens
+            timer = new Timer();
+            TimerTask action = new TimerTask() {
+                public void run() {
+                    ((QuizActivity)getActivity()).goToNextQuestion();
+                }
+            };
+            timer.schedule(action, 300); //this starts the task*/
         }
     };
 

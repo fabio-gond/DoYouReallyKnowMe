@@ -58,6 +58,7 @@ public class CheckQuestionFragment extends Fragment {
                 }
                 Answer rightAnswer=new Answer(answersTags);
                 game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answers to this quiz
+                ((QuizActivity)getActivity()).goToNextQuestion();
             }
         });
         return fragmentView;
