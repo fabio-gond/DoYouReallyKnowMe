@@ -2,30 +2,30 @@ package com.example.android.doyoureallyknowme;
 
 
 public class Answer {
-    // an Answer can be a String, a number (like radio button id), an int array (like checkboxes ids)
-    private String stringAnswer=" ";
-    private int intAnswer=0;
-    private int[] intArrayAnswer=new int[10];
+    // an Answer can be an EditText , the radio button tag, an int array of checkboxes tags
+    private String editText =" ";
+    private int radioButtonTag =0;
+    private int[] checkBoxesTags =new int[10];
 
     // Constructors based on the answer type
-    Answer(String stringAnswer){
-        this.stringAnswer=stringAnswer;
+    Answer(String editText){
+        this.editText = editText;
     }
-    Answer(int intAnswer){
-        this.intAnswer=intAnswer;
+    Answer(int radioButtonTag){
+        this.radioButtonTag = radioButtonTag;
     }
-    Answer(int[] intArrayAnswer){this.intArrayAnswer=intArrayAnswer;   }
+    Answer(int[] checkBoxesTags){this.checkBoxesTags = checkBoxesTags;   }
 
     /**
     I know the type of the answer, so I can choose the appropriate method
      */
-    public int getIntAnswer() {
-        return intAnswer;
+    public int getRadioButtonTag() {
+        return radioButtonTag;
     }
-    public String getStringAnswer() {
-        return stringAnswer;
+    public String getEditText() {
+        return editText;
     }
-    public int[] getIntArrayAnswer() {
-        return intArrayAnswer;
+    public int[] getCheckBoxesTags() {
+        return checkBoxesTags;
     }
 }

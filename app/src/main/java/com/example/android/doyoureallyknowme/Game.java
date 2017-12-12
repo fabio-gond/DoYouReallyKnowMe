@@ -33,7 +33,7 @@ public class Game implements Parcelable {
     }
 
     public int getIntRightAnswer(int questionId){
-        return  questions[questionId].getRightAnswer().getIntAnswer();
+        return  questions[questionId].getRightAnswer().getRadioButtonTag();
     }
 
     public void writeToParcel(Parcel dest, int flags) {
@@ -68,7 +68,7 @@ public class Game implements Parcelable {
     private void createQuestions(){
         questions=new Question[10];
         questions[0]=new Question();
-        Answer[] answers={new Answer("Neri"),new Answer("Gialli"),new Answer("Rossi")};
+        String[] answers={"Neri","Gialli","Rossi"};
         questions[1]=new Question();
         questions[1].setAnswers(answers);
         questions[1].setType("radio");
@@ -83,7 +83,7 @@ public class Game implements Parcelable {
         questions[3].setType("check");
         questions[3].setQuestion("Di che colore sono i miei capelli?");
         questions[3].setSubtitle("Una sola risposta possibile");
-        Answer[] answers1={new Answer("Gialli"),new Answer("Rossi")};
+        String[] answers1={"Gialli","Rossi"};
         questions[3].setAnswers(answers1);
     }
 
@@ -103,15 +103,18 @@ public class Game implements Parcelable {
         currentQuestionNum=0;
     }
 
+    /**
+     * Compare the Partner answer with the right one
+     */
     public void checkAnswer(Answer tryAnswer, int questionId){
         Answer rightAnswer= questions[questionId].getRightAnswer();
-        String a=rightAnswer.getStringAnswer();
-        String b=tryAnswer.getStringAnswer();
-        Boolean isCorrect=false; // Does the partner answer correspond to the right answer?
-        if (a.equals(b)
-            && rightAnswer.getIntAnswer()==tryAnswer.getIntAnswer()
-            && Arrays.equals(rightAnswer.getIntArrayAnswer(),tryAnswer.getIntArrayAnswer())){
-                    isCorrect= true;
+       Boolean isCorrect=false; // Does the partner answer correspond to the right answer?
+        switch (questions[questionId].getType()){
+            case "edit": isCorrect=rightAnswer.getEditText().equals(tryAnswer.getEditText());
+                break;
+            case "radio": isCorrect=rightAnswer.getRadioButtonTag()==tryAnswer.getRadioButtonTag();
+                break;
+            case "check": isCorrect=Arrays.equals(rightAnswer.getCheckBoxesTags(),tryAnswer.getCheckBoxesTags());
         }
         if (isCorrect){
             this.score++;

@@ -68,14 +68,7 @@ public class QuizActivity extends AppCompatActivity  {
         if (question.getSubtitle()!= null) bundle.putString("subtitle",question.getSubtitle());
         switch (question.getType()){
             case "radio":{
-                Answer[] answers = question.getAnswers();
-                String[] answersTexts = new String[answers.length];
-                int i=0;
-                for(Answer answer:answers){
-                    answersTexts[i]=answer.getStringAnswer();
-                    i++;
-                }
-                bundle.putStringArray("answersTexts",answersTexts);
+                bundle.putStringArray("answersTexts",question.getAnswers());
 
                 // Create new fragment and transaction
                 RadioQuestionFragment questionFragment = new RadioQuestionFragment();
@@ -92,14 +85,7 @@ public class QuizActivity extends AppCompatActivity  {
                 transaction.commit();}
             break;
             case "check":{
-                Answer[] answers = question.getAnswers();
-                String[] answersTexts = new String[answers.length];
-                int i=0;
-                for(Answer answer:answers){
-                    answersTexts[i]=answer.getStringAnswer();
-                    i++;
-                }
-                bundle.putStringArray("answersTexts",answersTexts);
+                bundle.putStringArray("answersTexts",question.getAnswers());
 
                 // Create new fragment and transaction
                 CheckQuestionFragment questionFragment = new CheckQuestionFragment();

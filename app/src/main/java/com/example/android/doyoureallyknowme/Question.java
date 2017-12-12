@@ -4,14 +4,14 @@ public class Question {
     private Answer rightAnswer;
     private String question;
     private String subtitle;
-    private Answer[] answers;
+    private String[] answers;
     private String type;
 
     public void setRightAnswer(Answer rightAnswer) {
         this.rightAnswer = rightAnswer;
     }
 
-    public void setAnswers(Answer[] answers) {
+    public void setAnswers(String[] answers) {
         this.answers = answers;
     }
 
@@ -32,7 +32,7 @@ public class Question {
         return rightAnswer;
     }
 
-    public Answer[] getAnswers() {
+    public String[] getAnswers() {
         return answers;
     }
 
