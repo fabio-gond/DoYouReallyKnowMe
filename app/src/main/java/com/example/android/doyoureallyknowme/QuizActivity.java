@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 public class QuizActivity extends AppCompatActivity  {
     public final String GAME = "game";
+    public final String ISPLAYING = "isplaying";
     private Game game;
     private Boolean isPlaying = false; // Are we in the question setting or playing mode?
 
@@ -23,6 +24,7 @@ public class QuizActivity extends AppCompatActivity  {
             goToNextQuestion();
         }else{
             game=savedInstanceState.getParcelable(GAME);
+            isPlaying=savedInstanceState.getBoolean(ISPLAYING);
             int i= game.getCurrentQuestionNum();
         }
 
@@ -129,8 +131,12 @@ public class QuizActivity extends AppCompatActivity  {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(GAME, game);
+        outState.putBoolean(ISPLAYING,isPlaying);
         super.onSaveInstanceState(outState);
     }
 
+    public void setIsPlaying(){
+        isPlaying=true;
+    }
 
 }

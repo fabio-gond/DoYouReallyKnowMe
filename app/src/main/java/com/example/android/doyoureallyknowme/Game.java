@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -101,4 +102,20 @@ public class Game implements Parcelable {
         currentQuestionNum=0;
     }
 
+    public boolean isCorrect(Answer tryAnswer, int questionId){
+        Answer rightAnswer= questions[questionId].getRightAnswer();
+        String a=rightAnswer.getStringAnswer();
+        String b=tryAnswer.getStringAnswer();
+        int[] inarr1 = rightAnswer.getIntArrayAnswer();
+        int[] inarr2 = tryAnswer.getIntArrayAnswer();
+        if (a.equals(b)){
+            if(rightAnswer.getBooleanAnswer()==tryAnswer.getBooleanAnswer()){
+                if(rightAnswer.getIntAnswer()==tryAnswer.getIntAnswer()){
+                    if(Arrays.equals(inarr1,inarr2))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
 }

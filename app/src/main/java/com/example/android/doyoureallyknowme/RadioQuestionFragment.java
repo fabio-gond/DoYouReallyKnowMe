@@ -2,6 +2,7 @@ package com.example.android.doyoureallyknowme;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,16 +52,24 @@ public class RadioQuestionFragment extends Fragment  {
         public void onClick(View v) {
             // What's the clicked radio button?
             RadioButton radioButton= (RadioButton) v;
-            Answer rightAnswer=new Answer((int)radioButton.getTag());
-            game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answer to this quiz
-            timer.cancel(); //this will cancel the current task. if there is no active task, nothing happens
-            timer = new Timer();
-            TimerTask action = new TimerTask() {
-                public void run() {
-                    ((QuizActivity)getActivity()).goToNextQuestion();
-                }
-            };
-            timer.schedule(action, 300); //this starts the task*/
+            if (!game.getIsPlaying()){
+                Answer rightAnswer=new Answer((int)radioButton.getTag());
+                game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answer to this quiz
+                timer.cancel(); //this will cancel the current task. if there is no active task, nothing happens
+                timer = new Timer();
+                TimerTask action = new TimerTask() {
+                    public void run() {
+                        ((QuizActivity)getActivity()).goToNextQuestion();
+                    }
+                };
+                timer.schedule(action, 300); //this starts the task*/
+                return;
+            }
+            Answer tryAnswer=new Answer((int)radioButton.getTag());
+            if(game.isCorrect(tryAnswer,game.getCurrentQuestionNum())){
+                Log.i("Radio","correct");
+            }
+
         }
     };
 

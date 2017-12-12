@@ -29,10 +29,12 @@ public class SettingEndFragment extends Fragment {
         final Button button = fragmentView.findViewById(R.id.btn_settingend_next);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), QuizActivity.class);
+                /*Intent intent = new Intent(getContext(), QuizActivity.class);
                 intent.putExtra(ISPLAYING, true);
                 getActivity().finish();
-                startActivity(intent);
+                startActivity(intent); */
+                ((QuizActivity)getActivity()).setIsPlaying();
+                getActivity().recreate();
             }
         });
         return fragmentView;
