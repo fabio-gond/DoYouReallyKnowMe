@@ -5,11 +5,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class QuizActivity extends AppCompatActivity  {
     public final String GAME = "game";
-    public final String ISPLAYING = "isplaying";
+    public final String IN_PARTNER_MODE = "inPartnerMode";
     private Game game;
-    private Boolean isPlaying = false; // Are we in the question setting or playing mode?
+    private Boolean inPartnerMode = false; // Are we in the question setting or playing mode?
+    private Timer timer= new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,18 +21,18 @@ public class QuizActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_quiz);
 
         Intent intent = getIntent();
-        isPlaying = intent.getBooleanExtra("isplaying",false);
+        inPartnerMode = intent.getBooleanExtra("isplaying",false);
 
         if (savedInstanceState == null) {
             game=new Game(this);
             goToNextQuestion();
         }else{
             game=savedInstanceState.getParcelable(GAME);
-            isPlaying=savedInstanceState.getBoolean(ISPLAYING);
+            inPartnerMode =savedInstanceState.getBoolean(IN_PARTNER_MODE);
             int i= game.getCurrentQuestionNum();
         }
 
-        if (isPlaying){
+        if (inPartnerMode && !game.getIsPlaying()){ // If the partner quiz mode is started but not the game
             game.startGame();
             // Create new fragment and transaction
             StartGameFragment startGameFragment = new StartGameFragment();
@@ -79,7 +83,7 @@ public class QuizActivity extends AppCompatActivity  {
                 questionFragment.setArguments(bundle);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment
-                if (currentQuestionNum==1 && !isPlaying){
+                if (currentQuestionNum==1 && !inPartnerMode){
                     transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
                 }else{
                     transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
@@ -103,7 +107,7 @@ public class QuizActivity extends AppCompatActivity  {
                 questionFragment.setArguments(bundle);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment
-                if (currentQuestionNum==1 && !isPlaying){
+                if (currentQuestionNum==1 && !inPartnerMode){
                     transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
                 }else{
                     transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
@@ -117,7 +121,7 @@ public class QuizActivity extends AppCompatActivity  {
                 questionFragment.setArguments(bundle);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment
-                if (currentQuestionNum==1 && !isPlaying){
+                if (currentQuestionNum==1 && !inPartnerMode){
                     transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
                 }else{
                     transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
@@ -127,16 +131,32 @@ public class QuizActivity extends AppCompatActivity  {
             break;
         }
     }
+    /**
+     * Go to the next question after the @param delay
+     */
+    public void goToNextQuestion (int delay){
+        timer.cancel(); //this will cancel the current task. if there is no active task, nothing happens
+        timer = new Timer();
+        TimerTask action = new TimerTask() {
+            public void run() {
+                goToNextQuestion();
+            }
+        };
+        timer.schedule(action, delay); //this starts the task*/
+    }
 
+    /**
+     * Save the instance of the Game and inPartnerMode (i we are in the Partner mode)
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(GAME, game);
-        outState.putBoolean(ISPLAYING,isPlaying);
+        outState.putBoolean(IN_PARTNER_MODE, inPartnerMode);
         super.onSaveInstanceState(outState);
     }
 
-    public void setIsPlaying(){
-        isPlaying=true;
+    public void setPartnerMode(){
+        inPartnerMode =true;
     }
 
 }
