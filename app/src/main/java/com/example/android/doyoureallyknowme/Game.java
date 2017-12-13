@@ -36,6 +36,10 @@ public class Game implements Parcelable {
         return  questions[questionId].getRightAnswer().getRadioButtonTag();
     }
 
+    public String getEditTextRightAnswer(int questionId){
+        return  questions[questionId].getRightAnswer().getEditText();
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(isPlaying);
     }
@@ -108,19 +112,31 @@ public class Game implements Parcelable {
      */
     public void checkAnswer(Answer tryAnswer, int questionId){
         Answer rightAnswer= questions[questionId].getRightAnswer();
-       Boolean isCorrect=false; // Does the partner answer correspond to the right answer?
         switch (questions[questionId].getType()){
-            case "edit": isCorrect=rightAnswer.getEditText().equals(tryAnswer.getEditText());
+            case "edit":
+                if (rightAnswer.getEditText().equals(tryAnswer.getEditText())){
+                    this.score++;
+                    makeToast("All right!!");
+                }else{
+                    makeToast("Wrong!! The right answer is " + rightAnswer.getEditText());
+                }
                 break;
-            case "radio": isCorrect=rightAnswer.getRadioButtonTag()==tryAnswer.getRadioButtonTag();
+            case "radio":
+                if (rightAnswer.getRadioButtonTag()==tryAnswer.getRadioButtonTag()){
+                    this.score++;
+                    makeToast(quizActivity.getString(R.string.toast_game_right));
+                }else{
+                    makeToast(quizActivity.getString(R.string.toast_game_wrong));
+                }
                 break;
-            case "check": isCorrect=Arrays.equals(rightAnswer.getCheckBoxesTags(),tryAnswer.getCheckBoxesTags());
-        }
-        if (isCorrect){
-            this.score++;
-            makeToast(quizActivity.getString(R.string.toast_game_right));
-        }else{
-            makeToast(quizActivity.getString(R.string.toast_game_wrong));
+            case "check":
+                if (Arrays.equals(rightAnswer.getCheckBoxesTags(),tryAnswer.getCheckBoxesTags())){
+                    this.score++;
+                    makeToast(quizActivity.getString(R.string.toast_game_right));
+                }else{
+                    makeToast(quizActivity.getString(R.string.toast_game_wrong));
+                }
+                break;
         }
     }
 

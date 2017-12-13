@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -69,7 +70,6 @@ public class QuizActivity extends AppCompatActivity  {
         switch (question.getType()){
             case "radio":{
                 bundle.putStringArray("answersTexts",question.getAnswers());
-
                 // Create new fragment and transaction
                 RadioQuestionFragment questionFragment = new RadioQuestionFragment();
                 // Send game parcelable to fragment

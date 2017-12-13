@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class EditTextQuestionFragment extends Fragment {
     private Game game;
+    private QuizActivity quizActivity;
 
     public EditTextQuestionFragment() {
         // Required empty public constructor
@@ -23,6 +24,7 @@ public class EditTextQuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Get the game object from the activity
         game=getArguments().getParcelable("game");
+        quizActivity=((QuizActivity)getActivity());
         // Inflate the layout for this fragment
         View fragmentView= inflater.inflate(R.layout.fragment_edit_text_question, container, false);
         // Receive the question and the subtitle
@@ -40,9 +42,20 @@ public class EditTextQuestionFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText editText = getActivity().findViewById(R.id.et_editquestion_answer);
-                Answer rightAnswer=new Answer(editText.getText().toString());
-                game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answers to this quiz
-                ((QuizActivity)getActivity()).goToNextQuestion();
+                String tryText=editText.getText().toString();
+                if (!game.getIsPlaying()) {
+                    Answer rightAnswer = new Answer(tryText);
+                    game.setRightAnswer(game.getCurrentQuestionNum(), rightAnswer); // Set the right answers to this quiz
+                    quizActivity.goToNextQuestion();
+                    return;
+                }
+                Answer tryAnswer=new Answer(tryText);
+                game.checkAnswer(tryAnswer,game.getCurrentQuestionNum());
+                String rightText = game.getEditTextRightAnswer(game.getCurrentQuestionNum());
+                if(rightText.equals(tryText)){
+                    editText.setTextColor(getResources().getColor(R.color.colorRightAnswer));
+                }else editText.setTextColor(getResources().getColor(R.color.colorWrongAnswer));
+                quizActivity.goToNextQuestion(2000);
             }
         });
         return fragmentView;

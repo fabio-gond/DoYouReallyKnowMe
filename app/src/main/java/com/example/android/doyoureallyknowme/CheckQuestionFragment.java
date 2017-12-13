@@ -14,6 +14,7 @@ public class CheckQuestionFragment extends Fragment {
     private Game game;
     private String[] answersTexts; // answers of the current quiz - used on checkboxes creation
     private View fragmentView;
+    private QuizActivity quizActivity;
 
     public CheckQuestionFragment() {
         // Required empty public constructor
@@ -24,6 +25,7 @@ public class CheckQuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Get the game object from the activity
         game=getArguments().getParcelable("game");
+        quizActivity=((QuizActivity)getActivity());
         answersTexts =getArguments().getStringArray("answersTexts");
         // Inflate the layout for this fragment
         fragmentView= inflater.inflate(R.layout.fragment_check_question, container, false);
@@ -58,7 +60,7 @@ public class CheckQuestionFragment extends Fragment {
                 }
                 Answer rightAnswer=new Answer(answersTags);
                 game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answers to this quiz
-                ((QuizActivity)getActivity()).goToNextQuestion();
+                quizActivity.goToNextQuestion();
             }
         });
         return fragmentView;
