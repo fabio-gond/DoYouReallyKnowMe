@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,6 +11,8 @@ import java.util.TimerTask;
 public class QuizActivity extends AppCompatActivity  {
     public final String GAME = "game";
     public final String IN_PARTNER_MODE = "inPartnerMode";
+    public final String SCORE = "score";
+    public final String TOTAL_SCORE = "totalScore";
     private Game game;
     private Boolean inPartnerMode = false; // Are we in the question setting or playing mode?
     private Timer timer= new Timer();
@@ -51,11 +52,27 @@ public class QuizActivity extends AppCompatActivity  {
     public void goToNextQuestion(){
         int currentQuestionNum= game.getCurrentQuestionNum();
         if (currentQuestionNum>=game.getQuestionsQuantity()){
-            // Create new fragment and transaction
-            SettingEndFragment settingEndFragment = new SettingEndFragment();
-            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Are we in setting or playing mode?
+            if(!game.getIsPlaying()){ // We are at the end of the setting mode
+                // Go to the settingEnd fragment
+                SettingEndFragment settingEndFragment = new SettingEndFragment();
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager()
+                        .beginTransaction();
+                transaction.replace(R.id.layout_quiz_quizcontainer, settingEndFragment);
+                transaction.commit();
+                return;
+            }
+            // The user clicked the retry button
+            game.setIsPlaying(false);
+            Bundle bundle = new Bundle();
+            bundle.putInt(SCORE,game.getScore());
+            bundle.putInt(TOTAL_SCORE,game.getQuestionsQuantity());
+            ResultFragment resultFragment=new ResultFragment();
+            resultFragment.setArguments(bundle);
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction();
             // Replace whatever is in the fragment_container view with this fragment
-            transaction.replace(R.id.layout_quiz_quizcontainer, settingEndFragment);
+            transaction.replace(R.id.layout_quiz_quizcontainer, resultFragment);
             // Commit the transaction
             transaction.commit();
             return;

@@ -36,6 +36,10 @@ public class Game implements Parcelable {
         return  questions[questionId].getRightAnswer().getRadioButtonTag();
     }
 
+    public int[] getRightCheckBoxesTags(int questionId){
+        return questions[questionId].getRightAnswer().getCheckBoxesTags();
+    }
+
     public String getEditTextRightAnswer(int questionId){
         return  questions[questionId].getRightAnswer().getEditText();
     }
@@ -69,6 +73,9 @@ public class Game implements Parcelable {
         }
     };
 
+    /**
+     * Manually create all the questions
+     */
     private void createQuestions(){
         questions=new Question[10];
         questions[0]=new Question();
@@ -81,7 +88,6 @@ public class Game implements Parcelable {
         questions[2]=new Question();
         questions[2].setType("edit");
         questions[2].setQuestion("Qual'è il mio soprannome?");
-
 
         questions[3]=new Question();
         questions[3].setType("check");
@@ -105,6 +111,7 @@ public class Game implements Parcelable {
     public void startGame(){
         isPlaying=true;
         currentQuestionNum=0;
+        score=0;
     }
 
     /**
@@ -124,17 +131,17 @@ public class Game implements Parcelable {
             case "radio":
                 if (rightAnswer.getRadioButtonTag()==tryAnswer.getRadioButtonTag()){
                     this.score++;
-                    makeToast(quizActivity.getString(R.string.toast_game_right));
+                    makeToast(quizActivity.getString(R.string.all_toastright));
                 }else{
-                    makeToast(quizActivity.getString(R.string.toast_game_wrong));
+                    makeToast(quizActivity.getString(R.string.all_toastwrong));
                 }
                 break;
             case "check":
                 if (Arrays.equals(rightAnswer.getCheckBoxesTags(),tryAnswer.getCheckBoxesTags())){
                     this.score++;
-                    makeToast(quizActivity.getString(R.string.toast_game_right));
+                    makeToast(quizActivity.getString(R.string.all_toastright));
                 }else{
-                    makeToast(quizActivity.getString(R.string.toast_game_wrong));
+                    makeToast(quizActivity.getString(R.string.all_toastwrong));
                 }
                 break;
         }

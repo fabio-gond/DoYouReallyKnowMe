@@ -58,9 +58,26 @@ public class CheckQuestionFragment extends Fragment {
                         checked++;
                     }
                 }
-                Answer rightAnswer=new Answer(answersTags);
-                game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answers to this quiz
-                quizActivity.goToNextQuestion();
+                if (!game.getIsPlaying()){
+                    Answer rightAnswer=new Answer(answersTags);
+                    game.setRightAnswer(game.getCurrentQuestionNum(),rightAnswer); // Set the right answers to this quiz
+                    quizActivity.goToNextQuestion();
+                    return;
+                }
+                Answer triedAnswer=new Answer(answersTags); // The partner answer
+                game.checkAnswer(triedAnswer,game.getCurrentQuestionNum()); // Check if the answer is correct
+                // Disable click on all checkboxes and color the right answers
+                int[] rightTags = game.getRightCheckBoxesTags(game.getCurrentQuestionNum());
+                for (int tag:rightTags) {
+                    for (int i = 0; i < answersTexts.length; i++) {
+                        CheckBox checkBox = fragmentView.findViewById(i);
+                        if ((int)checkBox.getTag() == tag) {
+                            checkBox.setTextColor(getResources().getColor(R.color.colorRightAnswer));
+                        }
+                        if(tag==0)checkBox.setClickable(false);
+                    }
+                }
+                quizActivity.goToNextQuestion(2000);
             }
         });
         return fragmentView;

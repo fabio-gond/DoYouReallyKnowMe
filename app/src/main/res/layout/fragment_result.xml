@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.doyoureallyknowme.ResultFragment"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_result_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10" />
+    <TextView
+        android:id="@+id/tv_result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Non mi conosci affatto!"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_result_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retry"/>
+        <Button
+            android:id="@+id/btn_result_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Game"/>
+    </LinearLayout>
+
+
+</LinearLayout>

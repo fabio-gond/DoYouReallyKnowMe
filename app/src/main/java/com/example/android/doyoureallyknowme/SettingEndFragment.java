@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
 /**
  * End of the Questions Settings
  * This fragment tell to the user that the questions are all settes
  */
 public class SettingEndFragment extends Fragment {
-    final String ISPLAYING = "isplaying";
 
     public SettingEndFragment() {
         // Required empty public constructor
@@ -28,10 +26,6 @@ public class SettingEndFragment extends Fragment {
         final Button button = fragmentView.findViewById(R.id.btn_settingend_next);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /*Intent intent = new Intent(getContext(), QuizActivity.class);
-                intent.putExtra(IN_PARTNER_MODE, true);
-                getActivity().finish();
-                startActivity(intent); */
                 ((QuizActivity)getActivity()).setPartnerMode();
                 getActivity().recreate();
             }

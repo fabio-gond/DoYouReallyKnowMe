@@ -19,6 +19,7 @@ public class StartGameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fragmentView=inflater.inflate(R.layout.fragment_start_game, container, false);
+        // Button Next listener
         final Button button = fragmentView.findViewById(R.id.btn_settingend_next);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

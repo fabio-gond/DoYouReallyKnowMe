@@ -3,7 +3,12 @@
     <string name="quiz_stepindicator">%1$d of %2$d</string>
     <string name="all_btnnext">next</string>
 
-    <string name="btn_startgame_start">start</string>
-    <string name="toast_game_right">Good!</string>
-    <string name="toast_game_wrong">Nahh!</string>
+    <string name="startgame_btnstart">start</string>
+    <string name="all_toastright">Good!</string>
+    <string name="all_toastwrong">Nahh!</string>
+    <string name="result_negative">You don\'t know me!!</string>
+    <string name="result_positive">You know me..but not so much!</string>
+    <string name="result_great">There is a great agreement between us!!</string>
+    <string name="result_perfect">You and me are one and the same!!</string>
+
 </resources>
