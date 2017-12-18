@@ -10,26 +10,30 @@
         android:id="@+id/tv_result_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:textSize="150sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorSecondary"
         android:text="10" />
     <TextView
         android:id="@+id/tv_result_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Non mi conosci affatto!"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:text="Non mi conosci affatto!"
+        android:textSize="@dimen/ts_main_subtitle"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/margin_medium"/>
         <Button
             android:id="@+id/btn_result_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Retry"/>
+            android:text="@string/btn_result_retry"/>
         <Button
             android:id="@+id/btn_result_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Game"/>
-    </LinearLayout>
+            android:text="@string/btn_result_newGame"/>
 
 
 </LinearLayout>

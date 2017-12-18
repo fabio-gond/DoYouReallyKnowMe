@@ -25,6 +25,7 @@ public class EditTextQuestionFragment extends Fragment {
         // Get the game object from the activity
         game=getArguments().getParcelable("game");
         quizActivity=((QuizActivity)getActivity());
+        quizActivity.displayStep(true);
         // Inflate the layout for this fragment
         View fragmentView= inflater.inflate(R.layout.fragment_edit_text_question, container, false);
         // Receive the question and the subtitle
@@ -54,7 +55,7 @@ public class EditTextQuestionFragment extends Fragment {
                 String rightText = game.getEditTextRightAnswer(game.getCurrentQuestionNum());
                 if(rightText.equals(tryText)){
                     editText.setTextColor(getResources().getColor(R.color.colorRightAnswer));
-                }else editText.setTextColor(getResources().getColor(R.color.colorWrongAnswer));
+                }
                 quizActivity.goToNextQuestion(2000);
             }
         });

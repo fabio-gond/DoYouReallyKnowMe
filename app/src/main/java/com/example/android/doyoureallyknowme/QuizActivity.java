@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,11 +18,13 @@ public class QuizActivity extends AppCompatActivity  {
     private Game game;
     private Boolean inPartnerMode = false; // Are we in the question setting or playing mode?
     private Timer timer= new Timer();
+    private TextView bottomTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        bottomTextView= findViewById(R.id.textview_quiz_bottomText);
 
         Intent intent = getIntent();
         inPartnerMode = intent.getBooleanExtra("isplaying",false);
@@ -35,6 +39,7 @@ public class QuizActivity extends AppCompatActivity  {
         }
 
         if (inPartnerMode && !game.getIsPlaying()){ // If the partner quiz mode is started but not the game
+            bottomTextView.setVisibility(View.INVISIBLE);
             game.startGame();
             // Create new fragment and transaction
             StartGameFragment startGameFragment = new StartGameFragment();
@@ -160,6 +165,20 @@ public class QuizActivity extends AppCompatActivity  {
 
     public void setPartnerMode(){
         inPartnerMode =true;
+    }
+
+    /**
+     * Display or hide the game current step
+     */
+    public void displayStep(boolean display){
+        TextView bottomTextView= findViewById(R.id.textview_quiz_bottomText);
+        if(display && bottomTextView.getVisibility()!=View.VISIBLE){
+            bottomTextView.setVisibility(View.VISIBLE);
+            return;
+        }
+        if (!display && bottomTextView.getVisibility()!=View.GONE){
+            bottomTextView.setVisibility(View.GONE);
+        }
     }
 
 }

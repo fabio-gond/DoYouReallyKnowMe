@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="paddingMain">32dp</dimen>
+    <dimen name="padding_parentlayout">24dp</dimen>
+    <dimen name="ts_main_title">40sp</dimen>
+    <dimen name="ts_main_subtitle">25sp</dimen>
+    <dimen name="ts_questionTitle">32sp</dimen>
+    <dimen name="ts_questionSubtitle">16sp</dimen>
+    <dimen name="ts_radioAnswer">32sp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="ts_editTextQuestion_editText">24sp</dimen>
 </resources>

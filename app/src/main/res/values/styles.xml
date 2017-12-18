@@ -2,21 +2,32 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorSecondary</item>
+        <item name="colorButtonNormal">@color/colorSecondary</item>
         <item name="radioButtonStyle">@style/questionRadioButtonStyle</item>
         <item name="checkboxStyle">@style/questionCheckBoxStyle</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="buttonStyle">@style/buttonStyle</item>
     </style>
+
     <style name="questionRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton" >
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">36dp</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
     <style name="questionCheckBoxStyle" parent="@android:style/Widget.CompoundButton.CheckBox" >
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">36dp</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+    <style name="buttonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:textColor">@color/colorTextOnSecondary</item>
     </style>
 </resources>

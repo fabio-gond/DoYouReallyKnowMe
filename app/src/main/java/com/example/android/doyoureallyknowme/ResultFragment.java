@@ -15,6 +15,8 @@ import android.widget.TextView;
  * Result of the game
  */
 public class ResultFragment extends Fragment {
+    private QuizActivity quizActivity;
+
     public ResultFragment() {
         // Required empty public constructor
     }
@@ -23,6 +25,8 @@ public class ResultFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        quizActivity=((QuizActivity)getActivity());
+        quizActivity.displayStep(false);
         View fragmentView=inflater.inflate(R.layout.fragment_result, container, false);
         // Retry Button listener
         final Button btnRetry = fragmentView.findViewById(R.id.btn_result_retry);
@@ -46,7 +50,6 @@ public class ResultFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        QuizActivity quizActivity=(QuizActivity)getActivity();
         // Display the score and the text result
         int score=getArguments().getInt(quizActivity.SCORE);
         int totalScore=getArguments().getInt(quizActivity.TOTAL_SCORE);

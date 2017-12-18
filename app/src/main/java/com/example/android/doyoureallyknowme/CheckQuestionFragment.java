@@ -26,6 +26,7 @@ public class CheckQuestionFragment extends Fragment {
         // Get the game object from the activity
         game=getArguments().getParcelable("game");
         quizActivity=((QuizActivity)getActivity());
+        quizActivity.displayStep(true);
         answersTexts =getArguments().getStringArray("answersTexts");
         // Inflate the layout for this fragment
         fragmentView= inflater.inflate(R.layout.fragment_check_question, container, false);

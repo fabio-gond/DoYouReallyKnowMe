@@ -3,16 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="com.example.android.doyoureallyknowme.SettingEndFragment">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Le tue risposte sono state salvate!" />
+        android:textSize="@dimen/ts_main_title"
+        android:textAlignment="center"
+        android:text="Le tue risposte sono state salvate!"
+        android:layout_marginBottom="@dimen/margin_small"/>
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ora tocca al tuo partner" />
+        android:textAlignment="center"
+        android:textSize="@dimen/ts_main_subtitle"
+        android:text="Ora tocca al tuo partner"
+        android:layout_marginBottom="@dimen/margin_medium"/>
     <Button
         android:id="@+id/btn_settingend_next"
         android:layout_width="wrap_content"

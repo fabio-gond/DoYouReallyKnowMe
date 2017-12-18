@@ -10,10 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textSize="@dimen/ts_questionTitle"
         android:text="Di che colore sono i miei occhi?" />
 
     <TextView
         android:id="@+id/tv_radioquestion_subtitle"
+        android:textSize="@dimen/ts_questionSubtitle"
+        android:layout_marginBottom="@dimen/margin_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -21,7 +24,7 @@
 
     <RadioGroup
         android:id="@+id/rg_radioquestion_answers"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >

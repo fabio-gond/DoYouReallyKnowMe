@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DoYouReallyKnowMe</string>
+    <string name="app_name">Do You Really Know Me?</string>
     <string name="quiz_stepindicator">%1$d of %2$d</string>
     <string name="all_btnnext">next</string>
 
@@ -10,5 +10,12 @@
     <string name="result_positive">You know me..but not so much!</string>
     <string name="result_great">There is a great agreement between us!!</string>
     <string name="result_perfect">You and me are one and the same!!</string>
+    <string name="main_play">Play</string>
+    <string name="main_subtitle">Answer the quesions and then ask your partner to do the same</string>
+    <string name="main_title">Does your partner really know you?</string>
+    <string name="tv_startGame_title">Do you really know me?</string>
+    <string name="tv_startGame_subtitle">Answer the questions and prove it!</string>
+    <string name="btn_result_newGame">New Game</string>
+    <string name="btn_result_retry">Retry</string>
 
 </resources>

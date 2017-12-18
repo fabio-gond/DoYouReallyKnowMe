@@ -3,12 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="com.example.android.doyoureallyknowme.StartGameFragment">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quanto mi conosci?" />
+        android:textSize="@dimen/ts_main_title"
+        android:text="@string/tv_startGame_title"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ts_main_subtitle"
+        android:text="@string/tv_startGame_subtitle"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:textAlignment="center"/>
     <Button
         android:id="@+id/btn_settingend_next"
         android:layout_width="wrap_content"

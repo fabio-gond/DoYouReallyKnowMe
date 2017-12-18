@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/paddingMain"
-    tools:context="com.example.android.doyoureallyknowme.MainActivity">
+    tools:context="com.example.android.doyoureallyknowme.MainActivity"
+    android:background="@color/colorBackground">
 
-    <TextView
-        android:id="@+id/tv_main_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Il tuo partner ti conosce davvero?"
-        android:textAlignment="center"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_parentlayout">
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            android:textAlignment="center"
+            android:textSize="@dimen/ts_main_title" />
 
-    <Button
-        android:id="@+id/bt_main_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="GIOCA"
-        android:onClick="startGame"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_main_subtitle" />
+        <TextView
+            android:id="@+id/tv_main_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/main_subtitle"
+            android:textAlignment="center"
+            android:textSize="@dimen/ts_main_subtitle"/>
 
-    <TextView
-        android:id="@+id/tv_main_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Rispondi alle domande e poi chiedi al tuo partner di fare lo stesso"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_main_title" />
+        <Button
+            android:id="@+id/bt_main_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/main_play"
+            android:onClick="startGame"/>
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
