@@ -35,7 +35,6 @@ public class QuizActivity extends AppCompatActivity  {
         }else{
             game=savedInstanceState.getParcelable(GAME);
             inPartnerMode =savedInstanceState.getBoolean(IN_PARTNER_MODE);
-            int i= game.getCurrentQuestionNum();
         }
 
         if (inPartnerMode && !game.getIsPlaying()){ // If the partner quiz mode is started but not the game
@@ -88,23 +87,24 @@ public class QuizActivity extends AppCompatActivity  {
         Bundle bundle = new Bundle();
         bundle.putParcelable("game", game);
         bundle.putString("question",question.getQuestion());
+        FragmentTransaction transaction;
         if (question.getSubtitle()!= null) bundle.putString("subtitle",question.getSubtitle());
         switch (question.getType()){
-            case "radio":{
+            case "radio":
+            default:{
                 bundle.putStringArray("answersTexts",question.getAnswers());
                 // Create new fragment and transaction
                 RadioQuestionFragment questionFragment = new RadioQuestionFragment();
                 // Send game parcelable to fragment
                 questionFragment.setArguments(bundle);
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction = getSupportFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment
                 if (currentQuestionNum==1 && !inPartnerMode){
                     transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
                 }else{
                     transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
                 }
-                // Commit the transaction
-                transaction.commit();}
+            }
             break;
             case "check":{
                 bundle.putStringArray("answersTexts",question.getAnswers());
@@ -113,31 +113,31 @@ public class QuizActivity extends AppCompatActivity  {
                 CheckQuestionFragment questionFragment = new CheckQuestionFragment();
                 // Send game parcelable to fragment
                 questionFragment.setArguments(bundle);
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction = getSupportFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment
                 if (currentQuestionNum==1 && !inPartnerMode){
                     transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
                 }else{
                     transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
                 }
-                // Commit the transaction
-                transaction.commit();}
+            }
             break;
             case "edit":{
                 EditTextQuestionFragment questionFragment = new EditTextQuestionFragment();
                 // Send game parcelable to fragment
                 questionFragment.setArguments(bundle);
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction = getSupportFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment
                 if (currentQuestionNum==1 && !inPartnerMode){
                     transaction.add(R.id.layout_quiz_quizcontainer, questionFragment);
                 }else{
                     transaction.replace(R.id.layout_quiz_quizcontainer, questionFragment);
                 }
-                transaction.commit();
             }
             break;
         }
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.commit();
     }
     /**
      * Go to the next question after the @param delay
