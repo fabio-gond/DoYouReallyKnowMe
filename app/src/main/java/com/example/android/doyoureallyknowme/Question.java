@@ -1,17 +1,19 @@
 package com.example.android.doyoureallyknowme;
 
+import java.util.List;
+
 public class Question {
     private Answer rightAnswer;
     private String question;
     private String subtitle;
-    private String[] answers;
+    private List<String> answers;
     private String type;
 
     public void setRightAnswer(Answer rightAnswer) {
         this.rightAnswer = rightAnswer;
     }
 
-    public void setAnswers(String[] answers) {
+    public void setAnswers(List<String> answers) {
         this.answers = answers;
     }
 
@@ -32,7 +34,7 @@ public class Question {
         return rightAnswer;
     }
 
-    public String[] getAnswers() {
+    public List<String> getAnswers() {
         return answers;
     }
 

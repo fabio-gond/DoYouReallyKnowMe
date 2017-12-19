@@ -10,9 +10,11 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class CheckQuestionFragment extends Fragment {
     private Game game;
-    private String[] answersTexts; // answers of the current quiz - used on checkboxes creation
+    private List<String> answersTexts; // answers of the current quiz - used on checkboxes creation
     private View fragmentView;
     private QuizActivity quizActivity;
 
@@ -27,7 +29,7 @@ public class CheckQuestionFragment extends Fragment {
         game=getArguments().getParcelable("game");
         quizActivity=((QuizActivity)getActivity());
         quizActivity.displayStep(true);
-        answersTexts =getArguments().getStringArray("answersTexts");
+        answersTexts =getArguments().getStringArrayList("answersTexts");
         // Inflate the layout for this fragment
         fragmentView= inflater.inflate(R.layout.fragment_check_question, container, false);
         createCheckBoxes(); // create check boxes with answers
@@ -46,13 +48,13 @@ public class CheckQuestionFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int checked=0; // quantity of checked answers checkboxes
-                for (int i=0;i<answersTexts.length;i++){
+                for (int i=0;i<answersTexts.size();i++){
                     CheckBox checkBox=fragmentView.findViewById(i);
                     if(checkBox.isChecked())checked++;
                 }
                 int[] answersTags= new int[checked]; // The tags of the checked answers
                 checked=0;
-                for (int i=0;i<answersTexts.length;i++){
+                for (int i=0;i<answersTexts.size();i++){
                     CheckBox checkBox=fragmentView.findViewById(i);
                     if(checkBox.isChecked()){
                         answersTags[checked]= (int)checkBox.getTag();
@@ -70,7 +72,7 @@ public class CheckQuestionFragment extends Fragment {
                 // Disable click on all checkboxes and color the right answers
                 int[] rightTags = game.getRightCheckBoxesTags(game.getCurrentQuestionNum());
                 for (int tag:rightTags) {
-                    for (int i = 0; i < answersTexts.length; i++) {
+                    for (int i = 0; i < answersTexts.size(); i++) {
                         CheckBox checkBox = fragmentView.findViewById(i);
                         if ((int)checkBox.getTag() == tag) {
                             checkBox.setTextColor(getResources().getColor(R.color.colorRightAnswer));

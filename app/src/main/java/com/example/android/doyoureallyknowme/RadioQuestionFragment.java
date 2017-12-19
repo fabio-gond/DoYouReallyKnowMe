@@ -10,9 +10,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class RadioQuestionFragment extends Fragment  {
     private Game game;
-    private String[] answersTexts; // answers of the current quiz - used on radio button creation
+    private List<String> answersTexts; // answers of the current quiz - used on radio button creation
     private View fragmentView;
     private QuizActivity quizActivity;
 
@@ -25,7 +27,7 @@ public class RadioQuestionFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Get the game object from the activity
         game=getArguments().getParcelable("game");
-        answersTexts =getArguments().getStringArray("answersTexts");
+        answersTexts =getArguments().getStringArrayList("answersTexts");
         quizActivity=((QuizActivity)getActivity());
         quizActivity.displayStep(true);
         // Inflate the layout for this fragment

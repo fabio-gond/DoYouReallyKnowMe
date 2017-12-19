@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -92,7 +93,7 @@ public class QuizActivity extends AppCompatActivity  {
         switch (question.getType()){
             case "radio":
             default:{
-                bundle.putStringArray("answersTexts",question.getAnswers());
+                bundle.putStringArrayList("answersTexts", (ArrayList<String>) question.getAnswers());
                 // Create new fragment and transaction
                 RadioQuestionFragment questionFragment = new RadioQuestionFragment();
                 // Send game parcelable to fragment
@@ -107,7 +108,7 @@ public class QuizActivity extends AppCompatActivity  {
             }
             break;
             case "check":{
-                bundle.putStringArray("answersTexts",question.getAnswers());
+                bundle.putStringArrayList("answersTexts",(ArrayList<String>) question.getAnswers());
 
                 // Create new fragment and transaction
                 CheckQuestionFragment questionFragment = new CheckQuestionFragment();

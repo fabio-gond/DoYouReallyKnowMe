@@ -3,9 +3,11 @@ package com.example.android.doyoureallyknowme;
 import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Game implements Parcelable {
     private Boolean isPlaying = false; // Detect if the user is playing or setting the answers
@@ -13,6 +15,7 @@ public class Game implements Parcelable {
     private Question[] questions;
     private int currentQuestionNum =0;
     private QuizActivity quizActivity;
+    private int questionQuantity;
 
     public int getScore(){return score;}
     public void  setScore(int score){this.score=score;}
@@ -51,7 +54,6 @@ public class Game implements Parcelable {
         questions=new Question[10];
         //this.isPlaying = (Boolean) parcel.readValue(null);
     }
-    public Game(){  questions=new Question[10];  }
     public Game(Activity activity){
         quizActivity=(QuizActivity)activity;
         createQuestions();
@@ -77,24 +79,16 @@ public class Game implements Parcelable {
      * Manually create all the questions
      */
     private void createQuestions(){
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(quizActivity);
+        databaseAccess.open();
+        List<Question> questionsList = databaseAccess.getQuestions();
+        databaseAccess.close();
+
         questions=new Question[10];
         questions[0]=new Question();
-        String[] answers={"Neri","Gialli","Rossi"};
-        questions[1]=new Question();
-        questions[1].setAnswers(answers);
-        questions[1].setType("radio");
-        questions[1].setQuestion("Di che colore sono i miei occhi?");
-
-        questions[2]=new Question();
-        questions[2].setType("edit");
-        questions[2].setQuestion("Qual'è il mio soprannome?");
-
-        questions[3]=new Question();
-        questions[3].setType("check");
-        questions[3].setQuestion("Di che colore sono i miei capelli?");
-        questions[3].setSubtitle("Una sola risposta possibile");
-        String[] answers1={"Gialli","Rossi"};
-        questions[3].setAnswers(answers1);
+        for ( questionQuantity=0;questionQuantity<questionsList.size();questionQuantity++){
+            questions[questionQuantity+1]=questionsList.get(questionQuantity);
+        }
     }
 
     /**
@@ -102,7 +96,7 @@ public class Game implements Parcelable {
      * @return quantity of questions
      */
     public int getQuestionsQuantity(){
-        return 3;
+        return questionQuantity;
     }
 
     /**

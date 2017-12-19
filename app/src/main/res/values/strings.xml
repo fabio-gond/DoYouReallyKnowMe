@@ -2,7 +2,6 @@
     <string name="app_name">Do You Really Know Me?</string>
     <string name="quiz_stepindicator">%1$d of %2$d</string>
     <string name="all_btnnext">next</string>
-
     <string name="startgame_btnstart">start</string>
     <string name="all_toastright">Good!</string>
     <string name="all_toastwrong">Nahh!</string>
@@ -17,5 +16,4 @@
     <string name="tv_startGame_subtitle">Answer the questions and prove it!</string>
     <string name="btn_result_newGame">New Game</string>
     <string name="btn_result_retry">Retry</string>
-
 </resources>
