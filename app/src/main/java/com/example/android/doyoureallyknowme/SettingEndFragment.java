@@ -1,13 +1,11 @@
 package com.example.android.doyoureallyknowme;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * End of the Questions Settings
@@ -27,7 +25,7 @@ public class SettingEndFragment extends Fragment {
         quizActivity.displayStep(false);
         // Inflate the layout for this fragment
         View fragmentView=inflater.inflate(R.layout.fragment_setting_end, container, false);
-        final Button button = fragmentView.findViewById(R.id.btn_settingend_next);
+        final Button button = fragmentView.findViewById(R.id.btn_settingEnd_next);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 quizActivity.setPartnerMode();

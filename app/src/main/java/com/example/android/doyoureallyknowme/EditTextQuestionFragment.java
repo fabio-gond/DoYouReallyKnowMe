@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 
 public class EditTextQuestionFragment extends Fragment {
@@ -44,6 +47,12 @@ public class EditTextQuestionFragment extends Fragment {
             public void onClick(View v) {
                 EditText editText = getActivity().findViewById(R.id.et_editquestion_answer);
                 String tryText=editText.getText().toString();
+                if (tryText.equals("")){
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(quizActivity, R.string.all_toastInsertAnswer, duration);
+                    toast.show();
+                    return;
+                }
                 if (!game.getIsPlaying()) {
                     Answer rightAnswer = new Answer(tryText);
                     game.setRightAnswer(game.getCurrentQuestionNum(), rightAnswer); // Set the right answers to this quiz

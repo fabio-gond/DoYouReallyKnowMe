@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorSecondary</item>
-        <item name="colorButtonNormal">@color/colorSecondary</item>
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
         <item name="radioButtonStyle">@style/questionRadioButtonStyle</item>
         <item name="checkboxStyle">@style/questionCheckBoxStyle</item>
         <item name="android:textColor">@color/colorText</item>
@@ -13,16 +13,14 @@
     </style>
 
     <style name="questionRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton" >
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">@dimen/ts_answer</item>
         <item name="android:textColor">@color/colorText</item>
-        <item name="android:layout_marginBottom">40dp</item>
+        <item name="android:padding">@dimen/margin_medium</item>
     </style>
     <style name="questionCheckBoxStyle" parent="@android:style/Widget.CompoundButton.CheckBox" >
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">@dimen/ts_answer</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:padding">@dimen/margin_medium</item>
     </style>
     <style name="buttonStyle" parent="Base.Widget.AppCompat.Button">
         <item name="android:paddingTop">20dp</item>

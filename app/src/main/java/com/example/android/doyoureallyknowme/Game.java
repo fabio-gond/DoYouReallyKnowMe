@@ -17,19 +17,18 @@ public class Game implements Parcelable {
     private QuizActivity quizActivity;
     private int questionQuantity;
 
-    public int getScore(){return score;}
-    public void  setScore(int score){this.score=score;}
-    public Boolean getIsPlaying(){return isPlaying;}
-    public void setIsPlaying(Boolean isPlaying){this.isPlaying = isPlaying;}
-    public int getCurrentQuestionNum() {return currentQuestionNum;   }
-    public void setCurrentQuestionNum(int currentQuestionNum) { this.currentQuestionNum = currentQuestionNum;   }
+    int getScore(){return score;}
+    Boolean getIsPlaying(){return isPlaying;}
+    void setIsPlaying(Boolean isPlaying){this.isPlaying = isPlaying;}
+    int getCurrentQuestionNum() {return currentQuestionNum;   }
+    void setCurrentQuestionNum(int currentQuestionNum) { this.currentQuestionNum = currentQuestionNum;   }
 
     public Question getQuestion(int questionNum) {
         return questions[questionNum];
     }
 
     /*
-            Set the right answer to the current question
+      Set the right answer to the current question
          */
     public void setRightAnswer(int questionId, Answer rightAnswer){
         questions[questionId].setRightAnswer(rightAnswer);
@@ -76,7 +75,7 @@ public class Game implements Parcelable {
     };
 
     /**
-     * Manually create all the questions
+     * Get the questions from the database
      */
     private void createQuestions(){
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(quizActivity);

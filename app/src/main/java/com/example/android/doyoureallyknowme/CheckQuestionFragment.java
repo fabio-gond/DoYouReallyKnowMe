@@ -96,7 +96,7 @@ public class CheckQuestionFragment extends Fragment {
             CheckBox checkBox= new CheckBox(getActivity(),null,R.attr.checkboxStyle);
             checkBox.setId(i);
             checkBox.setTag(i);
-            checkBox.setText(text);
+            checkBox.setText(Character.toUpperCase(text.charAt(0)) + text.substring(1));
             linearLayout.addView(checkBox);
             i++;
         }

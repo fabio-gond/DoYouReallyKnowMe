@@ -11,17 +11,17 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/ts_main_title"
         android:textAlignment="center"
-        android:text="Le tue risposte sono state salvate!"
-        android:layout_marginBottom="@dimen/margin_small"/>
+        android:text="@string/tv_settingEnd_title"
+        android:layout_marginBottom="@dimen/margin_medium"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="@dimen/ts_main_subtitle"
-        android:text="Ora tocca al tuo partner"
-        android:layout_marginBottom="@dimen/margin_medium"/>
+        android:text="@string/tv_settingEnd_subtitle"
+        android:layout_marginBottom="@dimen/margin_big"/>
     <Button
-        android:id="@+id/btn_settingend_next"
+        android:id="@+id/btn_settingEnd_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/all_btnnext"/>

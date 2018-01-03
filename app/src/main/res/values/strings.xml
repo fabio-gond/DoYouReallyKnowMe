@@ -4,16 +4,19 @@
     <string name="all_btnnext">next</string>
     <string name="startgame_btnstart">start</string>
     <string name="all_toastright">Good!</string>
-    <string name="all_toastwrong">Nahh!</string>
+    <string name="all_toastwrong">Nope!</string>
     <string name="result_negative">You don\'t know me!!</string>
     <string name="result_positive">You know me..but not so much!</string>
-    <string name="result_great">There is a great agreement between us!!</string>
+    <string name="result_great">You know me very well</string>
     <string name="result_perfect">You and me are one and the same!!</string>
     <string name="main_play">Play</string>
-    <string name="main_subtitle">Answer the quesions and then ask your partner to do the same</string>
+    <string name="main_subtitle">Answer the questions and then ask your partner to do the same</string>
     <string name="main_title">Does your partner really know you?</string>
     <string name="tv_startGame_title">Do you really know me?</string>
     <string name="tv_startGame_subtitle">Answer the questions and prove it!</string>
     <string name="btn_result_newGame">New Game</string>
     <string name="btn_result_retry">Retry</string>
+    <string name="tv_settingEnd_title">Your answers have been saved!</string>
+    <string name="tv_settingEnd_subtitle">Now is your partner turn</string>
+    <string name="all_toastInsertAnswer">Please insert your answer!</string>
 </resources>

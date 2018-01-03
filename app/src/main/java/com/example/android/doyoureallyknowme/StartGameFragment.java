@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * The Partner start to play here
@@ -23,7 +22,7 @@ public class StartGameFragment extends Fragment {
         quizActivity=((QuizActivity)getActivity());
         View fragmentView=inflater.inflate(R.layout.fragment_start_game, container, false);
         // Button Next listener
-        final Button button = fragmentView.findViewById(R.id.btn_settingend_next);
+        final Button button = fragmentView.findViewById(R.id.btn_settingEnd_next);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 quizActivity.goToNextQuestion();

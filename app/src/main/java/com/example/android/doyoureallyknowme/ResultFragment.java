@@ -55,6 +55,8 @@ public class ResultFragment extends Fragment {
         int totalScore=getArguments().getInt(quizActivity.TOTAL_SCORE);
         TextView scoreTv = getActivity().findViewById(R.id.tv_result_score);
         scoreTv.setText(String.valueOf(score));
+        TextView totalTv = getActivity().findViewById(R.id.tv_result_total);
+        totalTv.setText("/" + String.valueOf(totalScore));
         TextView textTv = getActivity().findViewById(R.id.tv_result_text);
         // Set the score based result text
         if (score<=((60*totalScore)/100)){
