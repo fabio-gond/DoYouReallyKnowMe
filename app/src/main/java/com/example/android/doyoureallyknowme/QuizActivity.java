@@ -19,13 +19,12 @@ public class QuizActivity extends AppCompatActivity  {
     private Game game;
     private Boolean inPartnerMode = false; // Are we in the question setting or playing mode?
     private Timer timer= new Timer();
-    private TextView bottomTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        bottomTextView= findViewById(R.id.textview_quiz_bottomText);
+        TextView bottomTextView= findViewById(R.id.textview_quiz_bottomText);
 
         Intent intent = getIntent();
         inPartnerMode = intent.getBooleanExtra("isplaying",false);
