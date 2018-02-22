@@ -10,4 +10,8 @@
     <dimen name="margin_medium">10dp</dimen>
     <dimen name="margin_big">20dp</dimen>
     <dimen name="ts_editTextQuestion_editText">38sp</dimen>
+    <dimen name="ts_quiz_stepindicator">18sp</dimen>
+    <dimen name="padding_quiz_stepindicator">16dp</dimen>
+    <dimen name="ts_result_score">150sp</dimen>
+    <dimen name="ts_result_total">50sp</dimen>
 </resources>

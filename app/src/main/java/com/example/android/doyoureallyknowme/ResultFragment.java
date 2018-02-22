@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -66,5 +67,12 @@ public class ResultFragment extends Fragment {
         }else if(score<= ((95*totalScore)/100)){
             textTv.setText(R.string.result_great);
         }else textTv.setText(R.string.result_perfect);
+        makeToast("Your result is: " + score +"/" +totalScore + " !");
+    }
+
+    private void makeToast(CharSequence text){
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(quizActivity, text, duration);
+        toast.show();
     }
 }

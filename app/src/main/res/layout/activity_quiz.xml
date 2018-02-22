@@ -25,11 +25,11 @@
         android:id="@+id/textview_quiz_bottomText"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorTextOnSecondary"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:paddingTop="@dimen/padding_quiz_stepindicator"
+        android:paddingBottom="@dimen/padding_quiz_stepindicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="@dimen/ts_quiz_stepindicator"
         android:text="1 di 10"
         android:gravity="center"/>
 

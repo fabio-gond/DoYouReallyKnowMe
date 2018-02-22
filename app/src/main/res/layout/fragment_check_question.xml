@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="@dimen/ts_questionTitle"
-        android:text="Di che colore sono i miei occhi?" />
+        tools:text="Di che colore sono i miei occhi?" />
 
     <TextView
         android:id="@+id/tv_checkquestion_subtitle"
